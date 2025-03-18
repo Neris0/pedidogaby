@@ -115,7 +115,6 @@
             cursor: pointer;
             border-radius: 8px;
             transition: 0.3s;
-            position: relative; /* Corrigido para movimentar o botão */
         }
 
         #sim {
@@ -217,27 +216,27 @@
 
     <!-- Adicionando o vídeo que será reproduzido primeiro com áudio -->
     <video id="videoIntro" autoplay style="display:none;">
-        <source src="//neris0.github.io/pedidogaby/pedido_gaby/video01.mov" type="video/mp4">
+        <source src="pedido_gaby/video01.mov" type="video/mp4">
         Seu navegador não suporta o formato de vídeo.
     </video>
 
     <!-- Slides e Segundo Vídeo -->
     <div class="slideshow-container">
         <div class="slide fade">
-            <img src="//pedido_gaby\img05.jpg" alt="Aula de Psicologia das Cores">
+            <img src="pedido_gaby/img05.jpg" alt="Aula de Psicologia das Cores">
             <p>E advinha o que esse ser estava aprontando ?</p>
         </div>
     </div>
 
     <!-- Segundo vídeo, exibido após o slide -->
     <video id="Segundovideo" autoplay style="display:none;">
-        <source src="\\pedido_gaby\video02.mp4" type="video/mp4">
+        <source src="pedido_gaby/video02.mov" type="video/mp4">
     </video>
 
     <!-- Slide adicional, exibido por 3 segundos após o segundo vídeo -->
     <div class="slideshow-container">
         <div class="slide fade">
-            <img src="\\pedido_gaby\img01.jpg" alt="Aula de Psicologia das Cores">
+            <img src="pedido_gaby/img01.jpg" alt="Aula de Psicologia das Cores">
             <p>Você é um verdadeiro presente de Deus, e eu não posso mais perder tempo...</p>
         </div>
     </div>
@@ -257,7 +256,6 @@
 
     <!-- Container de corações caindo -->
     <div class="heart-container">
-        <!-- Os corações agora caem aleatoriamente na tela -->
         <div class="heart"></div>
         <div class="heart"></div>
         <div class="heart"></div>
@@ -323,17 +321,7 @@
             });
 
             const botaoNao = document.getElementById("nao");
-
-            // Movimentação do botão "Não" ao passar o mouse
             botaoNao.addEventListener("mouseover", function () {
-                let x = Math.random() * (window.innerWidth - botaoNao.clientWidth);
-                let y = Math.random() * (window.innerHeight - botaoNao.clientHeight);
-                botaoNao.style.left = `${x}px`;
-                botaoNao.style.top = `${y}px`;
-            });
-
-            // Movimentação do botão "Não" ao clicar
-            botaoNao.addEventListener("mousedown", function () {
                 let x = Math.random() * (window.innerWidth - botaoNao.clientWidth);
                 let y = Math.random() * (window.innerHeight - botaoNao.clientHeight);
                 botaoNao.style.left = `${x}px`;
