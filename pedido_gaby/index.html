@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Especial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            transform: rotate(45deg);
+            opacity: 0.8;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        .heart::before {
+            left: 0;
+            top: -15px;
+        }
+
+        .heart::after {
+            left: 15px;
+            top: 0;
+        }
+
+        .slideshow-container {
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            display: none;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeEffect 1s;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #5a5a5a;
+        }
+
+        @keyframes fadeEffect {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
+
+        .pedido {
+            display: none;
+            text-align: center;
+            max-width: 90%;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 30px;
+            animation: fadeEffect 2s;
+        }
+
+        .pedido-texto {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .botoes {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+            position: relative; /* Corrigido para movimentar o botão */
+        }
+
+        #sim {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #sim:hover {
+            background-color: #45a049;
+        }
+
+        #nao {
+            background-color: #f44336;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            p { font-size: 18px; }
+            .pedido-texto { font-size: 20px; }
+            button { font-size: 18px; padding: 10px 20px; }
+            .heart { width: 25px; height: 25px; }
+        }
+
+        @media (max-width: 500px) {
+            p { font-size: 16px; }
+            .pedido-texto { font-size: 18px; }
+            button { font-size: 16px; padding: 8px 16px; }
+        }
+
+        #videoIntro {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .intro-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5a5a5a;
+            margin-bottom: 20px;
+        }
+
+        .play-button {
+            font-size: 20px;
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .play-button:hover {
+            background-color: #45a049;
+        }
+
+        .intro-container {
+            text-align: center;
+            display: block;
+            margin-top: 50px;
+        }
+
+        @keyframes heartFall {
+            0% {
+                top: -10px;
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                opacity: 0;
+            }
+        }
+
+        .heart-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart-container .heart {
+            animation: heartFall 5s linear infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container de Introdução -->
+    <div class="intro-container">
+        <p class="intro-message">Vamos recapturar um pouco da nossa história? Pra começar, aperte no play.</p>
+        <button class="play-button" id="playButton">Play</button>
+    </div>
+
+    <!-- Adicionando o vídeo que será reproduzido primeiro com áudio -->
+    <video id="videoIntro" autoplay style="display:none;">
+        <source src="video01.mov" type="video/mp4">
+        Seu navegador não suporta o formato de vídeo.
+    </video>
+
+    <!-- Slides e Segundo Vídeo -->
+    <div class="slideshow-container">
+        <div class="slide fade">
+            <img src="C:\Users\neris\Desktop\pedido_gaby\img05.jpg" alt="Aula de Psicologia das Cores">
+            <p>E advinha o que esse ser estava aprontando ?</p>
+        </div>
+    </div>
+
+    <!-- Segundo vídeo, exibido após o slide -->
+    <video id="Segundovideo" autoplay style="display:none;">
+        <source src="video02.mp4" type="video/mp4">
+    </video>
+
+    <!-- Slide adicional, exibido por 3 segundos após o segundo vídeo -->
+    <div class="slideshow-container">
+        <div class="slide fade">
+            <img src="C:\Users\neris\Desktop\pedido_gaby\img01.jpg" alt="Aula de Psicologia das Cores">
+            <p>Você é um verdadeiro presente de Deus, e eu não posso mais perder tempo...</p>
+        </div>
+    </div>
+
+    <!-- Pedido -->
+    <div class="pedido">
+        <p class="pedido-texto">
+            Desde o dia em que você entrou na minha vida, tudo ganhou uma nova paleta de cores...
+            <br>Então, o que acha de oficializarmos esse projeto e criarmos juntos a nossa melhor versão?
+            <br><strong>Você aceita ser a UI perfeita para o meu código bagunçado?</strong>
+        </p>
+        <div class="botoes">
+            <button id="sim">Sim</button>
+            <button id="nao">Não</button>
+        </div>
+    </div>
+
+    <!-- Container de corações caindo -->
+    <div class="heart-container">
+        <!-- Os corações agora caem aleatoriamente na tela -->
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const playButton = document.getElementById("playButton");
+            const videoIntro = document.getElementById("videoIntro");
+            const slideshowContainer = document.querySelector(".slideshow-container");
+            const pedido = document.querySelector(".pedido");
+            const introContainer = document.querySelector(".intro-container");
+            const segundoVideo = document.getElementById("Segundovideo");
+
+            // Ação ao clicar no botão play
+            playButton.addEventListener("click", function () {
+                introContainer.style.display = "none";
+                videoIntro.style.display = "block";
+                videoIntro.play();
+            });
+
+            // Evento quando o vídeo terminar
+            videoIntro.onended = function() {
+                videoIntro.style.display = "none";
+                slideshowContainer.style.display = "block";
+                showSlides();
+            };
+
+            let slideIndex = 0;
+            const slides = document.querySelectorAll(".slide");
+
+            function showSlides() {
+                if (slideIndex < slides.length) {
+                    slides[slideIndex].style.display = "block";
+                    setTimeout(() => {
+                        slides[slideIndex].style.display = "none";
+                        slideIndex++;
+                        if (slideIndex === slides.length) {
+                            segundoVideo.style.display = "block";
+                            segundoVideo.play();
+                        } else {
+                            showSlides();
+                        }
+                    }, 3000);
+                }
+            }
+
+            segundoVideo.onended = function() {
+                setTimeout(() => {
+                    slideshowContainer.style.display = "none";
+                    pedido.style.display = "block";
+                }, 2000);
+            };
+
+            document.getElementById("sim").addEventListener("click", function () {
+                window.location.href = "https://www.youtube.com/watch?v=SEU_LlNK";
+            });
+
+            const botaoNao = document.getElementById("nao");
+
+            // Movimentação do botão "Não" ao passar o mouse
+            botaoNao.addEventListener("mouseover", function () {
+                let x = Math.random() * (window.innerWidth - botaoNao.clientWidth);
+                let y = Math.random() * (window.innerHeight - botaoNao.clientHeight);
+                botaoNao.style.left = `${x}px`;
+                botaoNao.style.top = `${y}px`;
+            });
+
+            // Movimentação do botão "Não" ao clicar
+            botaoNao.addEventListener("mousedown", function () {
+                let x = Math.random() * (window.innerWidth - botaoNao.clientWidth);
+                let y = Math.random() * (window.innerHeight - botaoNao.clientHeight);
+                botaoNao.style.left = `${x}px`;
+                botaoNao.style.top = `${y}px`;
+            });
+        });
+    </script>
+
+</body>
+</html>
