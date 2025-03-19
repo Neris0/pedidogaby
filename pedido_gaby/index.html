@@ -48,7 +48,7 @@
       from { opacity: 0.4; }
       to { opacity: 1; }
     }
-    /* Definindo a div .pedido como relativa para que os filhos absolutos sejam posicionados em relação a ela */
+    /* A div .pedido usa position: relative para que os elementos absolutos sejam posicionados em relação a ela */
     .pedido {
       display: none;
       position: relative;
@@ -65,7 +65,7 @@
       font-size: 22px;
       font-weight: bold;
     }
-    /* Container dos botões – inicialmente em fluxo normal */
+    /* Container dos botões */
     .botoes {
       margin-top: 20px;
       display: flex;
@@ -79,7 +79,7 @@
       cursor: pointer;
       border-radius: 8px;
       transition: 0.3s;
-      /* Para o botão “Sim” manter seu fluxo normal */
+      /* Inicialmente, ambos os botões seguem o fluxo normal */
     }
     #sim {
       background-color: #4CAF50;
@@ -88,11 +88,10 @@
     #sim:hover {
       background-color: #45a049;
     }
-    /* O botão “Não” será reposicionado via JS (absoluto) */
     #nao {
       background-color: #f44336;
       color: white;
-      /* Inicialmente, sem position absoluto – o JS fará o ajuste */
+      /* Sem posição definida inicialmente para que fique ao lado do botão “Sim” */
     }
     /* Estilos para telas menores */
     @media (max-width: 500px) {
@@ -215,17 +214,17 @@
         window.location.href = "https://www.youtube.com/watch?v=SEU_LINK";
       });
 
-      // Inicialmente, posiciona o botão "Não" de forma absoluta dentro da div .pedido
       const botaoNao = document.getElementById("nao");
-      // Calcula a posição atual do botão relativo à div .pedido
-      const pedidoRect = pedido.getBoundingClientRect();
-      const naoRect = botaoNao.getBoundingClientRect();
-      botaoNao.style.position = "absolute";
-      botaoNao.style.left = (naoRect.left - pedidoRect.left) + "px";
-      botaoNao.style.top = (naoRect.top - pedidoRect.top) + "px";
-
-      // Quando o usuário tenta passar o mouse sobre o botão, ele se move aleatoriamente dentro da div .pedido
       botaoNao.addEventListener("mouseover", function () {
+        // Se ainda não estiver com position absolute, define a posição atual como base
+        if (botaoNao.style.position !== "absolute") {
+          const pedidoRect = pedido.getBoundingClientRect();
+          const naoRect = botaoNao.getBoundingClientRect();
+          botaoNao.style.position = "absolute";
+          botaoNao.style.left = (naoRect.left - pedidoRect.left) + "px";
+          botaoNao.style.top = (naoRect.top - pedidoRect.top) + "px";
+        }
+        // Reposiciona aleatoriamente dentro da div .pedido
         const maxX = pedido.offsetWidth - botaoNao.clientWidth;
         const maxY = pedido.offsetHeight - botaoNao.clientHeight;
         let randomX = Math.random() * maxX;
