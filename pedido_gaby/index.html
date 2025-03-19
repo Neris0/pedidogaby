@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Pedido Especial">
+    <meta property="og:description" content="Um momento especial para lembrar e celebrar nosso amor.">
+    <meta property="og:image" content="https://neris0.github.io/pedidogaby/pedido_gaby/img01.jpg">
+    <meta property="og:url" content="https://neris0.github.io/pedidogaby/">
+    <meta property="og:type" content="website">
+
   <title>Pedido Especial</title>
   <style>
     * {
@@ -139,6 +145,12 @@
 </head>
 <body>
 
+      <!-- Adicionando a música -->
+  <audio id="backgroundMusic" loop>
+    <source src="https://youtu.be/nSDgHBxUbVQ" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+  </audio>
+
   <div class="intro-container">
     <p class="intro-message">Que tal revivermos um pouco da nossa história? Para começar, aperte no "Play"</p>
     <button class="play-button" id="playButton">Play</button>
@@ -182,6 +194,11 @@
       const segundoVideo = document.getElementById("Segundovideo");
       const slideshowContainer = document.querySelector(".slideshow-container");
       const pedido = document.querySelector(".pedido");
+      const backgroundMusic = document.getElementById("backgroundMusic");
+
+      // Iniciar a música com volume de 20% (0.2)
+      backgroundMusic.volume = 0.2;
+      backgroundMusic.play();
 
       playButton.addEventListener("click", function () {
         document.querySelector(".intro-container").style.display = "none";
@@ -221,6 +238,8 @@
       document.getElementById("sim").addEventListener("click", function () {
         window.location.href = "https://www.youtube.com/watch?v=SEU_LINK";
       });
+
+      
 
       const botaoNao = document.getElementById("nao");
       botaoNao.addEventListener("mouseover", function () {
