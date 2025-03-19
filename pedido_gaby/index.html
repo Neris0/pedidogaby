@@ -72,21 +72,24 @@
             font-weight: bold;
         }
 
-        .botoes {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
+.botoes {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os botões */
+    flex-wrap: wrap; /* Permite que os botões se ajustem quando a tela for pequena */
+}
 
-        button {
-            font-size: 20px;
-            padding: 12px 24px;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
+button {
+    font-size: 20px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    width: 100%; /* Garante que os botões ocupem 100% do espaço em dispositivos pequenos */
+    max-width: 200px; /* Limita a largura máxima dos botões */
+}
 
         #sim {
             background-color: #4CAF50;
