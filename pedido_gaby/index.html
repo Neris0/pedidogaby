@@ -1,258 +1,240 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedido Especial</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .slideshow-container {
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-            display: none;
-        }
-
-        .slide {
-            display: none;
-            animation: fadeEffect 1s;
-        }
-
-        img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        p {
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 15px;
-            color: #5a5a5a;
-        }
-
-        @keyframes fadeEffect {
-            from { opacity: 0.4; }
-            to { opacity: 1; }
-        }
-
-        .pedido {
-            display: none;
-            text-align: center;
-            max-width: 90%;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-            margin-top: 30px;
-            animation: fadeEffect 2s;
-        }
-
-        .pedido-texto {
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .botoes {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-evenly; /* Alinha os botões lado a lado */
-            width: 100%; /* Garante que a div ocupe toda a largura do container */
-            max-width: 600px; /* Limita a largura máxima da div */
-        }
-
-        button {
-            font-size: 20px;
-            padding: 12px 24px;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: 0.3s;
-            width: 48%; /* Os botões ocupam 48% da largura da div */
-            max-width: 200px; /* Limita a largura máxima dos botões */
-        }
-
-        /* Estilos para telas menores */
-        @media (max-width: 500px) {
-            .botoes {
-                flex-direction: column; /* Empilha os botões verticalmente em telas pequenas */
-                gap: 10px; /* Adiciona espaço entre os botões */
-            }
-
-            button {
-                width: 80%; /* Botões ocupam 80% da largura da tela */
-                padding: 10px 20px; /* Reduz o tamanho do padding nos dispositivos menores */
-                font-size: 16px; /* Reduz o tamanho da fonte */
-            }
-        }
-
-        #sim {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        #sim:hover {
-            background-color: #45a049;
-        }
-
-        #nao {
-            background-color: #f44336;
-            color: white;
-            position: absolute; /* Definindo a posição como absoluta para mover o botão */
-            transition: left 0.3s ease, top 0.3s ease; /* Adicionando transição suave ao movimento */
-        }
-
-        @media (max-width: 500px) {
-            p { font-size: 18px; }
-            .pedido-texto { font-size: 20px; }
-            button { font-size: 18px; padding: 10px 20px; }
-        }
-
-        #videoIntro {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            display: none;
-        }
-
-        .intro-message {
-            font-size: 24px;
-            font-weight: bold;
-            color: #5a5a5a;
-            margin-bottom: 20px;
-        }
-
-        .play-button {
-            font-size: 20px;
-            padding: 12px 24px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-        }
-
-        .play-button:hover {
-            background-color: #45a049;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedido Especial</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .slideshow-container {
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      display: none;
+    }
+    .slide {
+      display: none;
+      animation: fadeEffect 1s;
+    }
+    img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    p {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 15px;
+      color: #5a5a5a;
+    }
+    @keyframes fadeEffect {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+    /* Definindo a div .pedido como relativa para que os filhos absolutos sejam posicionados em relação a ela */
+    .pedido {
+      display: none;
+      position: relative;
+      text-align: center;
+      max-width: 90%;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+      margin-top: 30px;
+      animation: fadeEffect 2s;
+    }
+    .pedido-texto {
+      font-size: 22px;
+      font-weight: bold;
+    }
+    /* Container dos botões – inicialmente em fluxo normal */
+    .botoes {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    button {
+      font-size: 20px;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: 0.3s;
+      /* Para o botão “Sim” manter seu fluxo normal */
+    }
+    #sim {
+      background-color: #4CAF50;
+      color: white;
+    }
+    #sim:hover {
+      background-color: #45a049;
+    }
+    /* O botão “Não” será reposicionado via JS (absoluto) */
+    #nao {
+      background-color: #f44336;
+      color: white;
+      /* Inicialmente, sem position absoluto – o JS fará o ajuste */
+    }
+    /* Estilos para telas menores */
+    @media (max-width: 500px) {
+      p { font-size: 18px; }
+      .pedido-texto { font-size: 20px; }
+      button { font-size: 18px; padding: 10px 20px; }
+      .botoes {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+    #videoIntro {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+    .intro-message {
+      font-size: 24px;
+      font-weight: bold;
+      color: #5a5a5a;
+      margin-bottom: 20px;
+    }
+    .play-button {
+      font-size: 20px;
+      padding: 12px 24px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .play-button:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="intro-container">
-        <p class="intro-message">Que tal revivermos um pouco da nossa história? Para começar, aperte no "Play"</p>
-        <button class="play-button" id="playButton">Play</button>
+  <div class="intro-container">
+    <p class="intro-message">Que tal revivermos um pouco da nossa história? Para começar, aperte no "Play"</p>
+    <button class="play-button" id="playButton">Play</button>
+  </div>
+
+  <video id="videoIntro" autoplay controls>
+    <source src="https://neris0.github.io/pedidogaby/pedido_gaby/video01.mp4" type="video/mp4">
+    Seu navegador não suporta o formato de vídeo.
+  </video>
+
+  <div class="slideshow-container">
+    <div class="slide fade">
+      <img src="https://neris0.github.io/pedidogaby/pedido_gaby/img05.jpg" alt="Aula de Psicologia das Cores">
+      <p>E advinha o que esse ser estava aprontando?</p>
     </div>
+  </div>
 
-    <video id="videoIntro" autoplay controls>
-        <source src="https://neris0.github.io/pedidogaby/pedido_gaby/video01.mp4" type="video/mp4">
-        Seu navegador não suporta o formato de vídeo.
-    </video>
+  <video id="Segundovideo" controls style="display:none;">
+    <source src="https://neris0.github.io/pedidogaby/pedido_gaby/video02.mp4" type="video/mp4">
+    Seu navegador não suporta o formato de vídeo.
+  </video>
 
-    <div class="slideshow-container">
-        <div class="slide fade">
-            <img src="https://neris0.github.io/pedidogaby/pedido_gaby/img05.jpg" alt="Aula de Psicologia das Cores">
-            <p>E advinha o que esse ser estava aprontando?</p>
-        </div>
+  <div class="pedido">
+    <p class="pedido-texto">
+      Desde o dia em que você entrou na minha vida, tudo ganhou uma nova paleta de cores...
+      <br>Então, o que acha de oficializarmos esse projeto e criarmos juntos a nossa melhor versão?
+      <br><strong>Você aceita ser a UI perfeita para o meu código bagunçado?</strong>
+    </p>
+    <div class="botoes">
+      <button id="sim">Sim</button>
+      <button id="nao">Não</button>
     </div>
+  </div>
 
-    <video id="Segundovideo" controls style="display:none;">
-        <source src="https://neris0.github.io/pedidogaby/pedido_gaby/video02.mp4" type="video/mp4">
-        Seu navegador não suporta o formato de vídeo.
-    </video>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const playButton = document.getElementById("playButton");
+      const videoIntro = document.getElementById("videoIntro");
+      const segundoVideo = document.getElementById("Segundovideo");
+      const slideshowContainer = document.querySelector(".slideshow-container");
+      const pedido = document.querySelector(".pedido");
 
-    <div class="pedido">
-        <p class="pedido-texto">
-            Desde o dia em que você entrou na minha vida, tudo ganhou uma nova paleta de cores...
-            <br>Então, o que acha de oficializarmos esse projeto e criarmos juntos a nossa melhor versão?
-            <br><strong>Você aceita ser a UI perfeita para o meu código bagunçado?</strong>
-        </p>
-        <div class="botoes">
-            <button id="sim">Sim</button>
-            <button id="nao">Não</button>
-        </div>
-    </div>
+      playButton.addEventListener("click", function () {
+        document.querySelector(".intro-container").style.display = "none";
+        videoIntro.style.display = "block";
+        videoIntro.play();
+      });
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const playButton = document.getElementById("playButton");
-            const videoIntro = document.getElementById("videoIntro");
-            const segundoVideo = document.getElementById("Segundovideo");
-            const slideshowContainer = document.querySelector(".slideshow-container");
-            const pedido = document.querySelector(".pedido");
-            const introContainer = document.querySelector(".intro-container");
+      videoIntro.onended = function() {
+        videoIntro.style.display = "none"; // Fecha o primeiro vídeo
+        slideshowContainer.style.display = "block";
+        showSlides();
 
-            playButton.addEventListener("click", function () {
-                introContainer.style.display = "none";
-                videoIntro.style.display = "block";
-                videoIntro.play();
-            });
+        setTimeout(function() {
+          segundoVideo.style.display = "block";
+          segundoVideo.play();
+        }, 5000);
+      };
 
-            videoIntro.onended = function() {
-                videoIntro.style.display = "none"; // Fecha o primeiro vídeo
-                slideshowContainer.style.display = "block";
-                showSlides();
+      segundoVideo.onended = function() {
+        segundoVideo.style.display = "none"; // Fecha o segundo vídeo
+        pedido.style.display = "block"; // Mostra o pedido após o segundo vídeo
+      };
 
-                setTimeout(function() {
-                    segundoVideo.style.display = "block";
-                    segundoVideo.play();
-                }, 5000);
-            };
+      let slideIndex = 0;
+      const slides = document.querySelectorAll(".slide");
+      function showSlides() {
+        if (slideIndex < slides.length) {
+          slides[slideIndex].style.display = "block";
+          setTimeout(() => {
+            slides[slideIndex].style.display = "none";
+            slideIndex++;
+            showSlides();
+          }, 4000);
+        }
+      }
 
-            segundoVideo.onended = function() {
-                segundoVideo.style.display = "none"; // Fecha o segundo vídeo
-                pedido.style.display = "block"; // Mostra o pedido após o segundo vídeo
-            };
+      document.getElementById("sim").addEventListener("click", function () {
+        window.location.href = "https://www.youtube.com/watch?v=SEU_LINK";
+      });
 
-            let slideIndex = 0;
-            const slides = document.querySelectorAll(".slide");
+      // Inicialmente, posiciona o botão "Não" de forma absoluta dentro da div .pedido
+      const botaoNao = document.getElementById("nao");
+      // Calcula a posição atual do botão relativo à div .pedido
+      const pedidoRect = pedido.getBoundingClientRect();
+      const naoRect = botaoNao.getBoundingClientRect();
+      botaoNao.style.position = "absolute";
+      botaoNao.style.left = (naoRect.left - pedidoRect.left) + "px";
+      botaoNao.style.top = (naoRect.top - pedidoRect.top) + "px";
 
-            function showSlides() {
-                if (slideIndex < slides.length) {
-                    slides[slideIndex].style.display = "block";
-                    setTimeout(() => {
-                        slides[slideIndex].style.display = "none";
-                        slideIndex++;
-                        showSlides();
-                    }, 4000);
-                }
-            }
-
-            document.getElementById("sim").addEventListener("click", function () {
-                window.location.href = "https://www.youtube.com/watch?v=SEU_LINK";
-            });
-
-            const botaoNao = document.getElementById("nao");
-            botaoNao.addEventListener("mouseover", function () {
-                let x = Math.random() * (window.innerWidth - botaoNao.clientWidth);
-                let y = Math.random() * (window.innerHeight - botaoNao.clientHeight);
-                botaoNao.style.position = "absolute"; // Garantir que a posição será absoluta
-                botaoNao.style.left = `${x}px`;
-                botaoNao.style.top = `${y}px`;
-            });
-        });
-    </script>
+      // Quando o usuário tenta passar o mouse sobre o botão, ele se move aleatoriamente dentro da div .pedido
+      botaoNao.addEventListener("mouseover", function () {
+        const maxX = pedido.offsetWidth - botaoNao.clientWidth;
+        const maxY = pedido.offsetHeight - botaoNao.clientHeight;
+        let randomX = Math.random() * maxX;
+        let randomY = Math.random() * maxY;
+        botaoNao.style.left = `${randomX}px`;
+        botaoNao.style.top = `${randomY}px`;
+      });
+    });
+  </script>
 
 </body>
 </html>
