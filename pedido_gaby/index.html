@@ -209,7 +209,7 @@
             });
 
             videoIntro.onended = function() {
-                videoIntro.style.display = "none";
+                videoIntro.style.display = "none"; // Fecha o primeiro vídeo
                 slideshowContainer.style.display = "block";
                 showSlides();
 
@@ -217,6 +217,11 @@
                     segundoVideo.style.display = "block";
                     segundoVideo.play();
                 }, 5000);
+            };
+
+            segundoVideo.onended = function() {
+                segundoVideo.style.display = "none"; // Fecha o segundo vídeo
+                pedido.style.display = "block"; // Mostra o pedido após o segundo vídeo
             };
 
             let slideIndex = 0;
@@ -230,8 +235,6 @@
                         slideIndex++;
                         showSlides();
                     }, 4000);
-                } else {
-                    pedido.style.display = "block";
                 }
             }
 
