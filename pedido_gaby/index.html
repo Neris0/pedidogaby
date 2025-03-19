@@ -75,9 +75,9 @@
 .botoes {
     margin-top: 20px;
     display: flex;
-    justify-content: center;
-    gap: 20px; /* Espaçamento entre os botões */
-    flex-wrap: wrap; /* Permite que os botões se ajustem quando a tela for pequena */
+    justify-content: space-evenly; /* Isso vai garantir que os botões fiquem alinhados lado a lado */
+    width: 100%; /* Garantir que a div ocupe a largura inteira do container */
+    max-width: 600px; /* Limitar a largura máxima */
 }
 
 button {
@@ -87,8 +87,20 @@ button {
     cursor: pointer;
     border-radius: 8px;
     transition: 0.3s;
-    width: 100%; /* Garante que os botões ocupem 100% do espaço em dispositivos pequenos */
-    max-width: 200px; /* Limita a largura máxima dos botões */
+    width: 48%; /* Garantir que os botões ocupem 48% da largura da div e fiquem lado a lado */
+    max-width: 200px; /* Limitar a largura máxima dos botões */
+}
+
+/* Estilos para telas menores */
+@media (max-width: 500px) {
+    .botoes {
+        flex-direction: column; /* Empilhar os botões verticalmente em telas muito pequenas */
+        gap: 10px; /* Espaçamento entre os botões quando empilhados */
+    }
+
+    button {
+        width: 100%; /* Os botões ocupam a largura inteira da tela em dispositivos muito pequenos */
+    }
 }
 
         #sim {
