@@ -38,6 +38,12 @@
       border-radius: 10px;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     }
+    /* Nova regra para a imagem do pedido */
+    .pedido-img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
     p {
       font-size: 20px;
       font-weight: bold;
@@ -48,7 +54,7 @@
       from { opacity: 0.4; }
       to { opacity: 1; }
     }
-    /* A div .pedido usa position: relative para que os elementos absolutos sejam posicionados em relação a ela */
+    /* A div .pedido usa position: relative para posicionar os elementos absolutos internamente */
     .pedido {
       display: none;
       position: relative;
@@ -79,7 +85,6 @@
       cursor: pointer;
       border-radius: 8px;
       transition: 0.3s;
-      /* Inicialmente, ambos os botões seguem o fluxo normal */
     }
     #sim {
       background-color: #4CAF50;
@@ -91,7 +96,7 @@
     #nao {
       background-color: #f44336;
       color: white;
-      /* Sem posição definida inicialmente para que fique ao lado do botão “Sim” */
+      /* Inicialmente sem posicionamento absoluto para que fique ao lado do “Sim” */
     }
     /* Estilos para telas menores */
     @media (max-width: 500px) {
@@ -156,6 +161,8 @@
   </video>
 
   <div class="pedido">
+    <!-- Espaço para imagem: altere o src pelo link desejado -->
+    <img class="pedido-img" src="https://neris0.github.io/pedidogaby/pedido_gaby/img01.img">
     <p class="pedido-texto">
       Desde o dia em que você entrou na minha vida, tudo ganhou uma nova paleta de cores...
       <br>Então, o que acha de oficializarmos esse projeto e criarmos juntos a nossa melhor versão?
