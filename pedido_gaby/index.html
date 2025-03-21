@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Pedido Especial">
-    <meta property="og:description" content="Um momento especial para lembrar e celebrar nosso amor.">
-    <meta property="og:image" content="https://neris0.github.io/pedidogaby/pedido_gaby/img01.jpg">
-    <meta property="og:url" content="https://neris0.github.io/pedidogaby/">
-    <meta property="og:type" content="website">
-
+  <meta property="og:description" content="Um momento especial para lembrar e celebrar nosso amor.">
+  <meta property="og:image" content="https://neris0.github.io/pedidogaby/pedido_gaby/img01.jpg">
+  <meta property="og:url" content="https://neris0.github.io/pedidogaby/">
+  <meta property="og:type" content="website">
   <title>Pedido Especial</title>
   <style>
     * {
@@ -19,7 +18,6 @@
     body {
       font-family: 'Poppins', sans-serif;
       text-align: center;
-      /* Background atualizado para Rosa bebê (blush pink) */
       background: linear-gradient(to bottom, #FFB6C1, #FFE4E1);
       color: #333;
       min-height: 100vh;
@@ -30,22 +28,17 @@
       overflow: hidden;
       position: relative;
     }
-    .slideshow-container {
+    .pedido, .slideshow-container, .img05, .img06, .img07, #Segundovideo {
+      display: none;
+    }
+
+    .slideshow-container img {
       width: 90%;
       max-width: 400px;
-      position: relative;
-      display: none;
+      height: auto;
+      margin: 0 auto;
     }
-    .slide {
-      display: none;
-      animation: fadeEffect 1s;
-    }
-    img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    }
-    /* Nova regra para a imagem do pedido */
+
     .pedido-img {
       max-width: 100%;
       border-radius: 10px;
@@ -57,28 +50,10 @@
       margin-top: 15px;
       color: #5a5a5a;
     }
-    @keyframes fadeEffect {
-      from { opacity: 0.4; }
-      to { opacity: 1; }
-    }
-    /* A div .pedido usa position: relative para posicionar os elementos absolutos internamente */
-    .pedido {
-      display: none;
-      position: relative;
-      text-align: center;
-      max-width: 90%;
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-      margin-top: 30px;
-      animation: fadeEffect 2s;
-    }
     .pedido-texto {
       font-size: 22px;
       font-weight: bold;
     }
-    /* Container dos botões */
     .botoes {
       margin-top: 20px;
       display: flex;
@@ -103,9 +78,7 @@
     #nao {
       background-color: #f44336;
       color: white;
-      /* Inicialmente sem posicionamento absoluto para que fique ao lado do “Sim” */
     }
-    /* Estilos para telas menores */
     @media (max-width: 500px) {
       p { font-size: 18px; }
       .pedido-texto { font-size: 20px; }
@@ -115,13 +88,12 @@
         gap: 10px;
       }
     }
-    #videoIntro {
+    #videoIntro, #Segundovideo {
       width: 100%;
       max-width: 400px;
       height: auto;
       border-radius: 10px;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      display: none;
     }
     .intro-message {
       font-size: 24px;
@@ -132,7 +104,7 @@
     .play-button {
       font-size: 20px;
       padding: 12px 24px;
-      background-color: #4CAF50;
+      background-color: #4CAF50;  /* Garantindo que o botão "Play" seja verde */
       color: white;
       border: none;
       cursor: pointer;
@@ -141,11 +113,48 @@
     .play-button:hover {
       background-color: #45a049;
     }
+
+    .img05, .img06, .img07 {
+      width: 90%;
+      max-width: 400px;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      margin: 20px 0;
+      text-align: center;
+      display: none;
+    }
+    .img05 p, .img06 p, .img07 p {
+      font-size: 18px;
+      color: #5a5a5a;
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+    .img05 img, .img06 img, .img07 img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .continue-btn {
+      font-size: 20px;
+      padding: 12px 24px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: 0.3s;
+      margin-top: 20px; /* Adicionei a margem superior */
+    }
+
+    .continue-btn:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
 
-      <!-- Adicionando a música -->
   <audio id="backgroundMusic" loop>
     <source src="https://neris0.github.io/pedidogaby/pedido_gaby/audio01.mp3" type="audio/mpeg/mp3">
     Seu navegador não suporta o elemento de áudio.
@@ -153,34 +162,52 @@
 
   <div class="intro-container">
     <p class="intro-message">Que tal revivermos um pouco da nossa história? Para começar, aperte no "Play"</p>
-    <p class="intro-message">Não esqueça de assistir os videos até o final!</p>
+    <p class="intro-message">Não esqueça de assistir os vídeos até o final!</p>
     <button class="play-button" id="playButton">Play</button>
   </div>
 
-  <video id="videoIntro" autoplay controls>
+  <video id="videoIntro" autoplay controls style="display: none;">
     <source src="https://neris0.github.io/pedidogaby/pedido_gaby/video01.mp4" type="video/mp4">
     Seu navegador não suporta o formato de vídeo.
   </video>
 
-  <div class="slideshow-container">
+  <div class="slideshow-container" style="display: none;">
     <div class="slide fade">
       <img src="https://neris0.github.io/pedidogaby/pedido_gaby/img05.jpg" alt="Aula de Psicologia das Cores">
-      <p>E advinha o que esse ser estava aprontando?</p>
+      <p>E advinha o que esse ser estava aprontando? simples... estava dando inicio ao começo da nossa história...</p>
     </div>
+    <button class="continue-btn">Continuar</button> <!-- Botão para continuar -->
   </div>
 
-  <video id="Segundovideo" controls style="display:none;">
+  <video id="Segundovideo" controls style="display: none;">
     <source src="https://neris0.github.io/pedidogaby/pedido_gaby/video02.mp4" type="video/mp4">
     Seu navegador não suporta o formato de vídeo.
   </video>
 
+  <div class="img05">
+    <img src="https://neris0.github.io/pedidogaby/pedido_gaby/img08.jpg" alt="Nosso primeiro encontro" style="width: 100%;">
+    <p>Nosso  segundo encontro... e um dos momentos mais importantes...</p>
+    <button class="continue-btn">Continuar</button>
+  </div>
+
+  <div class="img06">
+    <img src="https://neris0.github.io/pedidogaby/pedido_gaby/img06.jpg" alt="Conteúdo errado" style="width: 100%;">
+    <p>Eita! Foi mal, conteúdo errado... Não briga comigo, tá? 😅 Kkk</p>
+    <button class="continue-btn">Continuar</button>
+  </div>
+
+  <div class="img07">
+    <img src="https://neris0.github.io/pedidogaby/pedido_gaby/img07.jpg" alt="Brilho nos olhos" style="width: 100%;">
+    <p>Tenho certeza de que você se lembra desse vídeo... e do brilho nos meus olhos enquanto te dizia essas palavras...</p>
+    <button class="continue-btn">Continuar</button>
+  </div>
+
   <div class="pedido">
-    <!-- Espaço para imagem: substitua o src abaixo pela URL desejada -->
-    <img class="pedido-img" src="https://neris0.github.io/pedidogaby/pedido_gaby/img01.jpg"Imagem do Pedido>
+    <img class="pedido-img" src="https://neris0.github.io/pedidogaby/pedido_gaby/img01.jpg" alt="Imagem do Pedido" style="width: 100%;">
     <p class="pedido-texto">
-      Desde que você entrou na minha vida, meu mundo ganhou uma nova paleta de cores, cada momento com você é um degradê perfeito entre amor e felicidade.
-      <br>Então, que tal oficializarmos esse projeto e criarmos juntos o design mais bonito da nossa história?
-      <br><strong>Você aceita ser o Figma dos meus wireframes bagunçados? O vetor que dá sentido à minha arte?</strong>
+      Desde que você entrou na minha vida, meu mundo ganhou uma nova paleta de cores...<br>
+      Então, que tal oficializarmos esse projeto e criarmos juntos o design mais bonito da nossa história?<br>
+      <strong>Você aceita ser o Figma dos meus wireframes bagunçados? O vetor que dá sentido à minha arte?</strong>
     </p>
     <div class="botoes">
       <button id="sim">Sim</button>
@@ -196,72 +223,49 @@
       const slideshowContainer = document.querySelector(".slideshow-container");
       const pedido = document.querySelector(".pedido");
       const backgroundMusic = document.getElementById("backgroundMusic");
-
-      // Iniciar a música com volume de 20% (0.2)
-      backgroundMusic.volume = 0.2;
-      backgroundMusic.play();
-
-      playButton.addEventListener("click", function () {
-        document.querySelector(".intro-container").style.display = "none";
-        videoIntro.style.display = "block";
-        videoIntro.play();
-      });
-
-      videoIntro.onended = function() {
-        videoIntro.style.display = "none"; // Fecha o primeiro vídeo
-        slideshowContainer.style.display = "block";
-        showSlides();
-
-        setTimeout(function() {
-          segundoVideo.style.display = "block";
-          segundoVideo.play();
-        }, 5000);
-      };
-
-      segundoVideo.onended = function() {
-        segundoVideo.style.display = "none"; // Fecha o segundo vídeo
-        pedido.style.display = "block"; // Mostra o pedido após o segundo vídeo
-      };
-
-      let slideIndex = 0;
-      const slides = document.querySelectorAll(".slide");
-      function showSlides() {
-        if (slideIndex < slides.length) {
-          slides[slideIndex].style.display = "block";
-          setTimeout(() => {
-            slides[slideIndex].style.display = "none";
-            slideIndex++;
-            showSlides();
-          }, 4000);
-        }
-      }
-
-      document.getElementById("sim").addEventListener("click", function () {
-        window.location.href = "https://www.youtube.com/watch?v=SEU_LINK";
-      });
-
+      const continueBtns = document.querySelectorAll('.continue-btn');
+      const imgDivs = document.querySelectorAll('.img05, .img06, .img07');
+      const introContainer = document.querySelector('.intro-container');
       
+      let currentDivIndex = 0;
 
-      const botaoNao = document.getElementById("nao");
-      botaoNao.addEventListener("mouseover", function () {
-        // Se ainda não estiver com position absolute, define a posição atual como base
-        if (botaoNao.style.position !== "absolute") {
-          const pedidoRect = pedido.getBoundingClientRect();
-          const naoRect = botaoNao.getBoundingClientRect();
-          botaoNao.style.position = "absolute";
-          botaoNao.style.left = (naoRect.left - pedidoRect.left) + "px";
-          botaoNao.style.top = (naoRect.top - pedidoRect.top) + "px";
-        }
-        // Reposiciona aleatoriamente dentro da div .pedido
-        const maxX = pedido.offsetWidth - botaoNao.clientWidth;
-        const maxY = pedido.offsetHeight - botaoNao.clientHeight;
-        let randomX = Math.random() * maxX;
-        let randomY = Math.random() * maxY;
-        botaoNao.style.left = `${randomX}px`;
-        botaoNao.style.top = `${randomY}px`;
+      // Mostrar a introdução e iniciar o áudio
+      playButton.addEventListener('click', function () {
+        introContainer.style.display = 'none';  // Esconde a introdução
+        videoIntro.style.display = 'block';  // Exibe o vídeo inicial
+        backgroundMusic.play();
+        playButton.style.display = 'none';
+      });
+
+      // Lógica do primeiro vídeo
+      videoIntro.addEventListener('ended', function () {
+        videoIntro.style.display = 'none';
+        slideshowContainer.style.display = 'block';  // Exibe o slideshow
+      });
+
+      // Lógica do segundo vídeo
+      segundoVideo.addEventListener('ended', function () {
+        segundoVideo.style.display = 'none';
+        imgDivs[currentDivIndex].style.display = 'block';  // Exibe a próxima div
+      });
+
+      continueBtns.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+          if (index === 0) {
+            slideshowContainer.style.display = 'none';  // Esconde o slideshow
+            segundoVideo.style.display = 'block';  // Exibe o segundo vídeo
+          } else if (index === 1) {
+            imgDivs[currentDivIndex].style.display = 'none';  // Esconde a div atual
+            currentDivIndex++;  // Avança para a próxima div
+            if (currentDivIndex < imgDivs.length) {
+              imgDivs[currentDivIndex].style.display = 'block';  // Exibe a próxima div
+            } else {
+              pedido.style.display = 'block';  // Exibe o pedido final
+            }
+          }
+        });
       });
     });
   </script>
-
 </body>
 </html>
