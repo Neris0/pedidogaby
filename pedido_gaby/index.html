@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Pedido Especial">
-  <meta property="og:description" content="Mário & Gabrielle 15/03/2025">
+  <meta property="og:description" content="Um momento especial para lembrar e celebrar nosso amor.">
   <meta property="og:image" content="https://neris0.github.io/pedidogaby/pedido_gaby/img01.jpg">
   <meta property="og:url" content="https://neris0.github.io/pedidogaby/">
   <meta property="og:type" content="website">
@@ -180,7 +180,7 @@
   <div class="slideshow-container" style="display: none;">
     <div class="slide fade">
       <img src="https://neris0.github.io/pedidogaby/pedido_gaby/img05.jpg" alt="Aula de Psicologia das Cores">
-      <p>E adivinha o que esse ser estava aprontando? simples... estava dando inicio ao começo da nossa história...</p>
+      <p>E adivinha o que esse ser estava fazendo? Algo simples, mas de grande significado... estava dando início à nossa história, a primeira página de um livro que só nós dois podemos escrever</p>
     </div>
     <button class="continue-btn">Continuar</button> <!-- Botão para continuar -->
   </div>
@@ -239,6 +239,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const imgDivs = document.querySelectorAll('.img05, .img06, .img07');
     const introContainer = document.querySelector('.intro-container');
     const botaoNao = document.getElementById('nao');
+    document.getElementById('sim').addEventListener('click', function() {
+  window.location.href = 'https://youtu.be/hPxDQjxD2Gs'; // Substitua SEU_VIDEO_ID pelo ID do vídeo no YouTube
+});
+
 
     let currentDivIndex = 0;
 
@@ -305,6 +309,7 @@ document.addEventListener("DOMContentLoaded", function () {
         botaoNao.style.top = randomY + 'px';
     });
 });
+
   </script>
 </body>
 </html>
