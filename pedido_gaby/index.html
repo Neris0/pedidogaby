@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Pedido Especial">
-  <meta property="og:description" content="Um momento especial para lembrar e celebrar nosso amor.">
+  <meta property="og:description" content="Mário & Gabrielle 15/03/2025">
   <meta property="og:image" content="https://neris0.github.io/pedidogaby/pedido_gaby/img01.jpg">
   <meta property="og:url" content="https://neris0.github.io/pedidogaby/">
   <meta property="og:type" content="website">
@@ -28,7 +28,7 @@
       overflow: hidden;
       position: relative;
     }
-    .pedido, .slideshow-container, .img05, .img06, .img07, #Segundovideo {
+    .pedido, .slideshow-container, .img05, .img06, .img07, .Segundovideo, #Terceirovideo  {
       display: none;
     }
 
@@ -88,13 +88,14 @@
         gap: 10px;
       }
     }
-    #videoIntro, #Segundovideo {
-      width: 100%;
+    #videoIntro, #Segundovideo, #Terceirovideo {
       max-width: 400px;
+      width: 100%;
       height: auto;
       border-radius: 10px;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     }
+
     .intro-message {
       font-size: 24px;
       font-weight: bold;
@@ -151,6 +152,11 @@
     .continue-btn:hover {
       background-color: #45a049;
     }
+
+    #nao {
+      position: relative;
+      transition: all 0.3s ease;
+    }
   </style>
 </head>
 <body>
@@ -174,7 +180,7 @@
   <div class="slideshow-container" style="display: none;">
     <div class="slide fade">
       <img src="https://neris0.github.io/pedidogaby/pedido_gaby/img05.jpg" alt="Aula de Psicologia das Cores">
-      <p>E advinha o que esse ser estava aprontando? simples... estava dando inicio ao começo da nossa história...</p>
+      <p>E adivinha o que esse ser estava aprontando? simples... estava dando inicio ao começo da nossa história...</p>
     </div>
     <button class="continue-btn">Continuar</button> <!-- Botão para continuar -->
   </div>
@@ -186,7 +192,7 @@
 
   <div class="img05">
     <img src="https://neris0.github.io/pedidogaby/pedido_gaby/img08.jpg" alt="Nosso primeiro encontro" style="width: 100%;">
-    <p>Nosso  segundo encontro... e um dos momentos mais importantes...</p>
+    <p>Nosso segundo encontro... um dos momentos mais importantes...</p>
     <button class="continue-btn">Continuar</button>
   </div>
 
@@ -202,6 +208,11 @@
     <button class="continue-btn">Continuar</button>
   </div>
 
+  <video id="Terceirovideo" controls style="display: none;">
+    <source src="https://neris0.github.io/pedidogaby/pedido_gaby/video03.mp4" type="video/mp4">
+    Seu navegador não suporta o formato de vídeo.
+  </video>
+
   <div class="pedido">
     <img class="pedido-img" src="https://neris0.github.io/pedidogaby/pedido_gaby/img01.jpg" alt="Imagem do Pedido" style="width: 100%;">
     <p class="pedido-texto">
@@ -216,56 +227,84 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const playButton = document.getElementById("playButton");
-      const videoIntro = document.getElementById("videoIntro");
-      const segundoVideo = document.getElementById("Segundovideo");
-      const slideshowContainer = document.querySelector(".slideshow-container");
-      const pedido = document.querySelector(".pedido");
-      const backgroundMusic = document.getElementById("backgroundMusic");
-      const continueBtns = document.querySelectorAll('.continue-btn');
-      const imgDivs = document.querySelectorAll('.img05, .img06, .img07');
-      const introContainer = document.querySelector('.intro-container');
-      
-      let currentDivIndex = 0;
+document.addEventListener("DOMContentLoaded", function () {
+    const playButton = document.getElementById("playButton");
+    const videoIntro = document.getElementById("videoIntro");
+    const segundoVideo = document.getElementById("Segundovideo");
+    const terceiroVideo = document.getElementById("Terceirovideo");
+    const slideshowContainer = document.querySelector(".slideshow-container");
+    const pedido = document.querySelector(".pedido");
+    const backgroundMusic = document.getElementById("backgroundMusic");
+    const continueBtns = document.querySelectorAll('.continue-btn');
+    const imgDivs = document.querySelectorAll('.img05, .img06, .img07');
+    const introContainer = document.querySelector('.intro-container');
+    const botaoNao = document.getElementById('nao');
 
-      // Mostrar a introdução e iniciar o áudio
-      playButton.addEventListener('click', function () {
-        introContainer.style.display = 'none';  // Esconde a introdução
-        videoIntro.style.display = 'block';  // Exibe o vídeo inicial
+    let currentDivIndex = 0;
+
+    // Inicia o primeiro vídeo
+    playButton.addEventListener('click', function () {
+        introContainer.style.display = 'none';
+        videoIntro.style.display = 'block';
         backgroundMusic.play();
         playButton.style.display = 'none';
-      });
-
-      // Lógica do primeiro vídeo
-      videoIntro.addEventListener('ended', function () {
-        videoIntro.style.display = 'none';
-        slideshowContainer.style.display = 'block';  // Exibe o slideshow
-      });
-
-      // Lógica do segundo vídeo
-      segundoVideo.addEventListener('ended', function () {
-        segundoVideo.style.display = 'none';
-        imgDivs[currentDivIndex].style.display = 'block';  // Exibe a próxima div
-      });
-
-      continueBtns.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-          if (index === 0) {
-            slideshowContainer.style.display = 'none';  // Esconde o slideshow
-            segundoVideo.style.display = 'block';  // Exibe o segundo vídeo
-          } else if (index === 1) {
-            imgDivs[currentDivIndex].style.display = 'none';  // Esconde a div atual
-            currentDivIndex++;  // Avança para a próxima div
-            if (currentDivIndex < imgDivs.length) {
-              imgDivs[currentDivIndex].style.display = 'block';  // Exibe a próxima div
-            } else {
-              pedido.style.display = 'block';  // Exibe o pedido final
-            }
-          }
-        });
-      });
     });
+
+    // Quando o primeiro vídeo termina, exibir o slideshow
+    videoIntro.addEventListener('ended', function () {
+        videoIntro.style.display = 'none';
+        slideshowContainer.style.display = 'block';
+    });
+
+    // Quando o segundo vídeo termina, exibir a div.img05
+    segundoVideo.addEventListener('ended', function () {
+        segundoVideo.style.display = 'none';
+        document.querySelector('.img05').style.display = 'block'; // Exibe a img05 após o segundo vídeo
+    });
+
+    // Quando o terceiro vídeo termina, exibir a div.pedido
+    terceiroVideo.addEventListener('ended', function () {
+        terceiroVideo.style.display = 'none';
+        pedido.style.display = 'block'; // Exibe o conteúdo da div.pedido após o terceiro vídeo
+    });
+
+    // Botão "Continuar" para alternar entre imagens e exibir o pedido final
+    continueBtns.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            if (index === 0) {
+                slideshowContainer.style.display = 'none';
+                segundoVideo.style.display = 'block';
+            } else if (index === 1) {
+                imgDivs[currentDivIndex].style.display = 'none';
+                currentDivIndex++;
+                if (currentDivIndex < imgDivs.length) {
+                    imgDivs[currentDivIndex].style.display = 'block';
+                } else {
+                    pedido.style.display = 'block';
+                }
+            } else if (index === 2) { // Para o botão de "Continuar" na img07
+                imgDivs[currentDivIndex].style.display = 'none';
+                terceiroVideo.style.display = 'block'; // Exibe o terceiro vídeo após o botão ser pressionado
+            }
+        });
+    });
+
+    // Função para mover o botão "Não" para um local aleatório dentro da div
+    botaoNao.addEventListener('mouseover', function () {
+        const pedidoDiv = document.querySelector('.pedido');
+        const pedidoDivWidth = pedidoDiv.clientWidth;
+        const pedidoDivHeight = pedidoDiv.clientHeight;
+        const buttonWidth = botaoNao.offsetWidth;
+        const buttonHeight = botaoNao.offsetHeight;
+
+        const randomX = Math.floor(Math.random() * (pedidoDivWidth - buttonWidth));
+        const randomY = Math.floor(Math.random() * (pedidoDivHeight - buttonHeight));
+
+        botaoNao.style.position = 'absolute';
+        botaoNao.style.left = randomX + 'px';
+        botaoNao.style.top = randomY + 'px';
+    });
+});
   </script>
 </body>
 </html>
